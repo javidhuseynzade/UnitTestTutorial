@@ -1,13 +1,15 @@
 package com.example.unittesttutorial.tdd;
 
-import com.example.unittesttutorial.simplecalculator.CalculatorImpl;
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
+import com.example.unittesttutorial.simplecalculator.CalculatorImpl;
+import org.junit.jupiter.api.Test;
+
 public class CalculatorImplTest {
+
     private CalculatorImpl calculator;
+
     @Test
     public void givenAAndBWhenAddThenC() {
         //Arrange
@@ -22,6 +24,7 @@ public class CalculatorImplTest {
         //Assert
         assertThat(result).isEqualTo(c);
     }
+
     @Test
     public void givenAAndBWhenSubtractThenC() {
         //Arrange
@@ -35,8 +38,8 @@ public class CalculatorImplTest {
 
         //Assert
         assertThat(result).isEqualTo(c);
-
     }
+
     @Test
     public void givenAAndBWhenMultiplyThenC() {
         //Arrange
@@ -50,7 +53,6 @@ public class CalculatorImplTest {
 
         //Assert
         assertThat(result).isEqualTo(c);
-
     }
 
     @Test
@@ -66,8 +68,8 @@ public class CalculatorImplTest {
 
         //Assert
         assertThat(result).isEqualTo(c);
-
     }
+
     @Test
     public void givenAAndBWhenDivideByZeroThenException() {
         //Arrange
@@ -80,4 +82,5 @@ public class CalculatorImplTest {
                 .isInstanceOf(ArithmeticException.class)
                 .hasMessage("/ by zero");
     }
+
 }

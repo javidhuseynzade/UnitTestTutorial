@@ -10,7 +10,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StudentView {
+
     private Long id;
     private String name;
     private Integer age;
+
 }

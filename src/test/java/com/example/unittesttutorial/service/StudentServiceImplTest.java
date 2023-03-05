@@ -1,9 +1,17 @@
 package com.example.unittesttutorial.service;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import com.example.unittesttutorial.entity.Student;
 import com.example.unittesttutorial.entity.StudentDto;
 import com.example.unittesttutorial.entity.StudentView;
 import com.example.unittesttutorial.repository.StudentRepository;
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,22 +21,16 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
-import java.util.Date;
-import java.util.Optional;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-
 @ExtendWith(MockitoExtension.class)
 class StudentServiceImplTest {
-    private StudentService studentService;
+
     @Mock
     private StudentRepository studentRepository;
 
     @Captor
     private ArgumentCaptor<Student> studentArgumentCaptor;
+
+    private StudentService studentService;
 
     @BeforeEach
     public void beforeEach() {
@@ -85,18 +87,18 @@ class StudentServiceImplTest {
         Student student = new Student();
         student.setName("ASLAN");
         student.setAge(20);
-        student.setCreationDate(new Date());
         when(studentRepository.save(any())).thenReturn(student);
 
         //Act
         studentService.create(dto);
 
         //Assert
-        verify(studentRepository,times(1)).save(studentArgumentCaptor.capture());
+        verify(studentRepository, times(1)).save(studentArgumentCaptor.capture());
         Student result = studentArgumentCaptor.getValue();
         assertThat(result.getName()).isEqualTo(student.getName());
         assertThat(result.getAge()).isEqualTo(student.getAge());
     }
+
     @Test
     void whenCreateStudentThenReturnStudentView() {
         //Arrange
@@ -109,4 +111,5 @@ class StudentServiceImplTest {
         assertThat(view.getName()).isEqualTo("ASLAN");
         assertThat(view.getAge()).isEqualTo(20);
     }
+
 }

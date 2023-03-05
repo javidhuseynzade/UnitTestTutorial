@@ -1,6 +1,7 @@
 package com.example.unittesttutorial.simplecalculator;
 
 public class CalculatorImpl implements Calculator {
+
     @Override
     public int add(int a, int b) {
         return a + b;
@@ -20,4 +21,5 @@ public class CalculatorImpl implements Calculator {
     public int divide(int a, int b) {
         return a / b;
     }
+
 }

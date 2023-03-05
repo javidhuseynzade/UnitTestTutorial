@@ -7,13 +7,12 @@ import com.example.unittesttutorial.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
-import java.util.function.Supplier;
 
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
+
     private final StudentRepository studentRepository;
     private final ModelMapper mapper;
 
@@ -36,4 +35,5 @@ public class StudentServiceImpl implements StudentService {
             throw new RuntimeException("You didn't pass the age requirement");
         }
     }
+
 }
